@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Weather Report</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+     <h1 align="center">Weather Details</h1>
+    <div class="container">
+      <fieldset>
+        <form action="/" method="post">
+          <input name="city" type="text" class="w-input" placeholder="Enter a City Here" required>
+          <input type="submit" class="w-button" value="Get Weather">
+        </form>
+		
+		<% if(city !== null){ %>
+			<h2 align= "left">Selected City: <%= city %></h2>
+		<% } %>
+		<% if(weather !== null){ %>
+          <table class="table-weather">
+		   <tr>
+			  <th>Date</th><th>Max Temp</th><th>Min Temp</th>
+		   </tr>
+
+		   <% for (var i = 0; i < weather.length;  i++) { %>
+			<tr>
+			  <td><%= weather[i].dt_txt %></td>
+			  <td><%= weather[i].main.temp_max %></td>
+			  <td><%= weather[i].main.temp_min %></td>
+			</tr>    
+		   <% } %>
+		</table>
+        <% } %>
+
+        <% if(error !== null){ %>
+          <p><%= error %></p>
+        <% } %>
+      </fieldset>
+    </div>
+  </body>
+</html>
